@@ -1,2 +1,6 @@
 *.swp
 *.pdf
+*.aux
+*.log
+*.out
+*.xmpi
