@@ -2,12 +2,11 @@
 % Uwe Ziegenhagen, ziegenhagen@gmail.com
 % http://code.google.com/p/spendenquittungen-mit-latex/
 % 
-% Angepasst fuer das CCT <https://techcultivation.org/>
-% Stefan Luecke (glaxx), glaxx@glaxx.net
+% Angepasst fuer quitty <TODO: insert quitty URL> 
+% Stefan Luecke (glaxx), <glaxx@glaxx.net>
 
 \documentclass[11pt,ngerman]{scrartcl}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+\usepackage[T1]{fontenc} 
 \usepackage{booktabs}
 \usepackage{babel}
 \usepackage{graphicx}
@@ -20,6 +19,7 @@
 \usepackage{ifthen}
 \usepackage[a-3b]{pdfx}
 
+\usepackage[utf8]{inputenc}
 \newboolean{sammel} % Sammelbestätigung
 \setboolean{sammel}{false}
 
@@ -56,18 +56,18 @@
 }
 
 \begin{document}
-\MyFormBox[0.0cm]{Aussteller (Bezeichnung und Anschrift der steuerbegünstigten Einrichtung)}{Name des Vereins, Anschrift des Vereins,  PLZ und Ort}
+\MyFormBox[0.0cm]{Aussteller (Bezeichnung und Anschrift der steuerbegünstigten Einrichtung)}{<<.Issuer>>}
 
 {\bfseries\large \ifthenelse{\boolean{sammel}}{Sammelbestätigung}{Bestätigung} über Geldzuwendungen/Mitgliedsbeiträge}\vspace*{1em}
 
 {\footnotesize im Sinne des § 10b des Einkommensteuergesetzes an eine der in § 5 Abs. 1 Nr. 9 des Körperschaftsteuergesetzes bezeichneten Körperschaften, Personenvereinigungen oder Vermögensmassen}
 
-\MyFormBox[0.0cm]{Name und Anschrift des Zuwendenden}{<Empfänger der Spendenquittung>}
+\MyFormBox[0.0cm]{Name und Anschrift des Zuwendenden}{<<.Recipient>>}
 
 \begin{tabu}{|[1pt]p{0.3\textwidth}|[1pt]p{0.32\textwidth} |[1pt]p{0.3\textwidth}|[1pt]} \tabucline[1pt]{-}
 \scriptsize \ifthenelse{\boolean{sammel}}{Summe}{Betrag} der Zuwendungen - in Ziffern - & \scriptsize- in Buchstaben - & \scriptsize \ifthenelse{\boolean{sammel}}{Zeitraum der Sammelbestätigung}{Tag der Zuwendung} \\ 
 \vspace*{1em} & & \\ 
-123,45 \euro & --- Einhundertdreiundzwangig --- & 01.01.2001--31.12.2001 \\
+<<.Value>> \euro & --- <<.ValueWords>> --- & <<.Date>> \\
 \vspace*{1em} & & \\ \tabucline[1pt]{-}
 \end{tabu}
 
@@ -76,10 +76,10 @@
 
 \notmarked Wir sind wegen Förderung (Angabe des begünstigten Zwecks / der begünstigten Zwecke) \hdashrule{2cm}{1pt}{1pt}  nach dem letzten uns zugegangenen Freistellungsbescheid bzw. nach der Anlage zum Körperschaftssteuerbescheid des Finanzamts \hdashrule{2cm}{1pt}{1pt} StNr \hdashrule{2cm}{1pt}{1pt} vom \hdashrule{2cm}{1pt}{1pt} für den letzten Veranlagungszeitraum \hdashrule{2cm}{1pt}{1pt} nach §~5 Abs. 1 Nr.~9 des Körperschaftssteuergesetzes von der Körperschaftssteuer und nach §~3 Nr.~6 des Gewerbesteuergesetzes von der Gewerbesteuer befreit. \vspace{2em}
   
-\notmarked Die Einhaltung der satzungsmäßigen Voraussetzungen nach den §§ 51, 59, 60 und 61 AO wurde vom Finanzamt \hdashrule{2cm}{1pt}{1pt} StNr. \hdashrule{2cm}{1pt}{1pt} mit Bescheid vom\hdashrule{2cm}{1pt}{1pt} nach § 60 AO gesondert festgestellt. Wir fördern nach unserer Satzung (Angabe des begünstigten Zwecks / der begünstigten Zwecke) \hdashrule{2cm}{1pt}{1pt}
- 
+\notmarked Die Einhaltung der satzungsmäßigen Voraussetzungen nach den §§ 51, 59, 60 und 61 AO wurde vom Finanzamt fuer Koerperschaften I \hdashrule{2cm}{1pt}{1pt} StNr. 27/611/05330 \hdashrule{2cm}{1pt}{1pt} mit Bescheid vom\hdashrule{2cm}{1pt}{1pt} nach § 60 AO gesondert festgestellt. Wir fördern nach unserer Satzung (Angabe des begünstigten Zwecks / der begünstigten Zwecke) \hdashrule{2cm}{1pt}{1pt}
+
 \begin{mdframed}[style=MyFormStyle]%
-Es wird bestätigt, dass die Zuwendung nur zur Förderung der begünstigten Zwecke 1, 2, 3 und 4 AO verwendet wird. 
+Es wird bestätigt, dass die Zuwendung nur zur Förderung (Förderung von Wissenschaft und Forschung, Kunst und Kultur, Erziehung, Volks- und Berufsbildung, Verbraucherberatung und Verbraucherschutz und buergerschaftlichen Engagement) zugunsten der vorgenannten Zwecke verwendet wird. 
 \end{mdframed} 
 
 \ifthenelse{\boolean{sammel}}{\vspace*{0.5em}Es wird bestätigt, dass über die in der Gesamtsumme enthaltenen Zuwendungen keine weiteren Bestätigungen, weder formelle Zuwendungsbestätigungen noch Beitragsquittungen o.ä., ausgestellt wurden und werden. 
@@ -88,7 +88,7 @@ Es wird bestätigt, dass die Zuwendung nur zur Förderung der begünstigten Zwec
 
 \vspace*{2.5em} 
 
-Ortsname, den \today \hspace*{20em} Max Mustermann
+<<.Place>>, den \today \hspace*{20em} <<.IssuerName>>
 
 \hrule
 
@@ -111,10 +111,7 @@ Diese Bestätigung wird nicht als Nachweis für die steuerliche Berücksichtigun
 Summe: & & & 123,00 \euro \\ \bottomrule[1pt]\bottomrule[1pt]
 \end{tabular}}{}
 
-
 \end{document}
-
-
 
 %% Use this if you want it electronically editable PDF.
 \usepackage{hyperref}
