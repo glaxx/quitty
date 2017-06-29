@@ -71,13 +71,24 @@ Options:
 	}
 
 	pdflatex_version_cmd := exec.Command(pdflatex_path, "--version")
-	pdflatex_version, err := pdflatex_version_cmd.Output()
+	pdflatex_version_stdout, err := pdflatex_version_cmd.StdoutPipe()
+	if err != nil {
+		log.WithField("Error", err).
+			Fatalln("could not open stdout from inferior process")
+	}
+
+	go func() {
+		scanner := bufio.NewScanner(pdflatex_version_stdout)
+		for scanner.Scan() {
+			log.WithField("pdflatex version", scanner.Text()).Debug()
+		}
+	}()
+
+	err = pdflatex_version_cmd.Run()
 	if err != nil {
 		log.WithField("Error", err).
 			Fatalln("could not retrieve version information from pdflatex")
 	}
-
-	log.WithField("Version", string(pdflatex_version)).Info("pdflatex version")
 
 	tmpdir, err := ioutil.TempDir("", "quitty")
 	if err != nil {
